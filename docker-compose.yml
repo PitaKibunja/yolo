@@ -1,0 +1,38 @@
+version "3.9"
+
+services:
+  react-app:
+    image: react-app-frontend
+    build: ./client/
+    stdin_open: true
+    port:
+      - "3000:3000"
+    networks:
+      - e-commerce-network
+
+  backend-server:
+    image: backend-server
+    build: ./backend/
+    ports:
+      - "5000:5000"
+    networks:
+      - e-commerce-network
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - e-commerce-network
+    volume:
+      - mongo-data:/data/db
+
+network:
+  e-commerce-network:
+    driver:bridge
+
+volumes:
+  mongo-data:
+    driver:local
