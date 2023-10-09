@@ -18,9 +18,9 @@ services:
     networks:
       - e-commerce-network
     depends_on:
-      - mongo
+      - mongodb
 
-  mongo:
+  mongodb:
     image: mongo
     ports:
       - "27017:27017"
