@@ -1,5 +1,5 @@
 1:Choice of base image
-#react-app and node js backend; I used the node:20-slim since is only comes 
+#react-app and node js backend; I used the node:alpine since is only comes 
 #with just the necessary packages to have the two apps up and running
 #this prevents un-necessary packages that otherwise might make the images 
 #Huge in size.
