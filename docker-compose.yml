@@ -21,7 +21,7 @@ services:
       - mongo
 
   mongo:
-    image: mongo
+    image: duluca/mongo
     ports:
       - "27017:27017"
     networks:
