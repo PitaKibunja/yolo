@@ -1,11 +1,11 @@
-version "3.9"
+version: '3.9'
 
 services:
   react-app:
     image: react-app-frontend
     build: ./client/
     stdin_open: true
-    port:
+    ports:
       - "3000:3000"
     networks:
       - e-commerce-network
@@ -26,13 +26,15 @@ services:
       - "27017:27017"
     networks:
       - e-commerce-network
-    volume:
+    volumes:
       - mongo-data:/data/db
 
-network:
+
+networks:
   e-commerce-network:
-    driver:bridge
+    driver: bridge
+
 
 volumes:
   mongo-data:
-    driver:local
+    driver: local
