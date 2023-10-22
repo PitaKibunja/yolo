@@ -13,3 +13,5 @@
 
     - vm-config
     - add-docker
+    - clone-repo-run-docker-compose
+    
