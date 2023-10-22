@@ -1,31 +1,62 @@
-1:Choice of base image
-#react-app and node js backend; I used the node:alpine since is only comes 
-#with just the necessary packages to have the two apps up and running
-#this prevents un-necessary packages that otherwise might make the images 
-#Huge in size.
+Certainly! Here's a revised explanation for your GitHub README file, framed as if you are explaining your project:
 
-2:Docker directive used in creation and running of each container
-#since both the apps have the base image being the same i.e Node js the
-#commands are pretty much similar.
-#Dockerfile(both frontend and backend): The dockerfile sets the working directory, copies the package.json
-# and package-lock.json files to instapp dependencies efficiently, copies
-#the application code, exposes the necessary port (5000-backend) and 
-#(3000-frontend), then it specifies the command to start the app (backend 
-#and frontend have same start command) due to same base image
+---
 
-3:Docker-compose Networking
-#e-commerce-network: The docker-compose file which merges the both images
-#and creates a container for both apps also creates a network to map
-#the three resources together the network is defined under the custom
-#bridge network. By connecting all the containers in the network allows
-#them to communicate with each other using service names as hostnames
-#Both containers have exposed different ports for connection with 
-#backend exposing port 5000 while frontend has exposed port 3000
-#this is to allow connection to those two app
+# Ansible Automation Project - GitHub README
 
-4:Docker-compose Volume Definition and usage:
-#There is a volumen named 'mongo-data' for the Mongodb container. The volume
-#persists data and ensures that the data is stored in mongoddb container 
-#'/data/db' directory and is preserved even if the container is stopped or
-# removed
+## Introduction
+Hey there! In this README, I'll walk you through a project I've been working on – an automation project using Ansible and Vagrant. This project revolves around creating a development environment in a virtual machine, configuring it, and preparing it for specific tasks. Let's dive in!
 
+## Project Setup
+
+### Vagrant Initialization
+First things first, I initiated the project with Vagrant. I used the `vagrant init` command to create a Vagrantfile, which is a configuration file defining our virtual machine's properties and settings.
+
+### Vagrantfile Configuration
+The Vagrantfile required some tweaks to meet our project's needs. Here's what I did:
+
+#### Ansible Provisioning
+I set up Ansible provisioning in the Vagrantfile. This means Ansible will configure our VM during its creation. I specified the playbook file to be executed as "playbook.yml" and adjusted the verbosity level for Ansible.
+
+```ruby
+config.vm.provision "ansible" do |ansible|
+  ansible.playbook = "playbook.yml"
+  ansible.verbose = "v"
+end
+```
+
+#### VirtualBox Configuration
+I made some VirtualBox-specific configurations by uncommenting the `config.vm.provider` block. This included modifying the VM's UART mode and adjusting the memory allocation.
+
+```ruby
+config.vm.provider "virtualbox" do |vb|
+  vb.customize [ "modifyvm", :id, "--uartmode1", "disconnected" ]
+  vb.memory = "1024"
+end
+```
+
+#### Port Forwarding
+To enable access to specific ports on the guest VM from the host machine, I added port forwarding rules.
+
+```ruby
+config.vm.network "forwarded_port", guest: 3000, host: 3000
+config.vm.network "forwarded_port", guest: 5000, host: 5000
+```
+
+### Ansible Role Creation
+I created three Ansible roles using `ansible-galaxy init`. Each role serves a specific purpose in configuring our VM:
+
+- **vm-config**: General VM configuration, including environment setup, package installation, and system settings.
+
+- **add-docker**: Installation and configuration of Docker, enabling containerization.
+
+- **clone-repo-run-docker-compose**: Cloning a Git repository and running Docker Compose to deploy an application, along with setting up required environmental variables.
+
+### Role Configuration
+For each role, I filled in the necessary files and tasks to achieve their specific purposes. This may involve creating Ansible playbooks, templates, and variable files as needed.
+
+### Playbook (playbook.yml)
+A playbook named "playbook.yml" is defined in the Vagrantfile. It orchestrates the application of the Ansible roles, specifying which roles should be applied and in what order.
+
+## Additional Information
+To make this project comprehensive, I've documented the purpose of the VM, the applications or services it will host, and any specific configurations required. You'll also find details about external dependencies, like the Git repository that the "clone-repo-run-docker-compose" role works with.
