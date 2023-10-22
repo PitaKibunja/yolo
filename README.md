@@ -1,6 +1,6 @@
 # YOLO Setup on Ubuntu Server 22.04
 
-This Ansible playbook is designed to automate the setup of YOLO (You Only Look Once) on an Ubuntu Server 22.04. YOLO is a popular real-time object detection system, and this playbook streamlines the process of configuring the required environment to run YOLO.
+This Ansible playbook is designed to automate the setup of an e-commerce website and dashboard on an Ubuntu Server 22.04.
 
 ## Prerequisites
 
