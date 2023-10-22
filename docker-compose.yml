@@ -9,6 +9,8 @@ services:
       - "3000:3000"
     networks:
       - e-commerce-network
+    depends_on:
+      - backend
 
   backend-server:
     image: backend-server

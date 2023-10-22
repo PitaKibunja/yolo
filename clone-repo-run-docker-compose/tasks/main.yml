@@ -1,0 +1,18 @@
+---
+# tasks file for clone-repo-run-docker-compose
+- name: Clone Yolo from GitHub Repo
+  git:
+        repo: https://github.com/PitaKibunja/yolo.git
+        dest: /home/IP/yolo
+        update: yes
+
+- name: navigate to the dir
+  command: cd /home/IP/yolo
+  args:
+        chdir: /home/IP/yolo
+        creates: /home/IP/yolo
+
+- name: Start Docker Compose
+  command: docker-compose up -d
+  args:
+    chdir: /home/IP/yolo  
