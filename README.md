@@ -28,10 +28,9 @@ To use this playbook, follow these steps:
 5. Run the playbook using the following command:
 
 ```bash
-ansible-playbook -i hosts your-playbook.yml
+ansible-playbook -i hosts playbook.yml
 ```
 
-Replace `your-playbook.yml` with the name of the YAML file containing the playbook.
 
 ## Playbook Details
 
@@ -58,7 +57,3 @@ Here's a breakdown of the key components of the playbook:
 ## Contributing
 
 If you'd like to contribute to this project, feel free to fork the repository, make your changes, and submit a pull request. We welcome any improvements or bug fixes.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
