@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: finalIP4
+  name: yolo-database
 spec:
   selector:
     matchLabels:
