@@ -1,7 +1,3 @@
-Certainly! Here's a revised explanation for your GitHub README file, framed as if you are explaining your project:
-
----
-
 # Ansible Automation Project - GitHub README
 
 ## Introduction
