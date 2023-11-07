@@ -5,7 +5,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: myapp
+      app: yolo-database
   serviceName: mongodb-service
   replicas: 2
   template:

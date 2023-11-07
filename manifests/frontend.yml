@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: app-frontend
 spec:
   selector:
     matchLabels:
@@ -9,11 +9,11 @@ spec:
   template:
     metadata:
       labels:
-        app: frontend
+        app: app-frontend
     spec:
       containers:
-      - name: myapp
-        image: <Image> //add the frontend image
+      - name: app-frontend
+        image: kibunja/frontend
         resources:
           limits:
             memory: "128Mi"
@@ -25,10 +25,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: app_service
+  name: app-service
 spec:
   selector:
-    app: frontend
+    app: app-frontend
   ports:
   - port: 3000
     targetPort: 3000

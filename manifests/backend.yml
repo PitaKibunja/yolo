@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend
+  name: backend-container
 spec:
   selector:
     matchLabels:
-      app: backend
+      app: backend-container
   template:
     metadata:
       labels:
-        app: backend
+        app: backend-container
     spec:
       containers:
-      - name: backend_container
-        image: <Image>//add my backend server
+      - name: backend-container
+        image: kibunja/backend-server 
         resources:
           limits:
             memory: "128Mi"
@@ -24,10 +24,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: app_service_backend
+  name: backend-container
 spec:
   selector:
-    app: backend
+    app: backend-container
   ports:
   - port: 5000
     targetPort: 5000
